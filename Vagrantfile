@@ -18,6 +18,10 @@ Vagrant.configure("2") do |config|
       git clone https://github.com/cloudacademy/static-website-example
       sudo chown -R www-data:www-data /var/www/amz/html
       sudo chmod -R 755 /var/www/amz
+      sudo cp /vagrant/config/amz /etc/nginx/sites-available/amz
+      sudo ln -s /etc/nginx/sites-available/amz /etc/nginx/sites-enabled/
+      sudo systemctl restart nginx
+      sudo systemctl status nginx
     SHELL
   end
 end
