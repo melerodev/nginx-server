@@ -16,7 +16,7 @@ Antes de intentar escribir, añadir o modificar algo dentro de esta:
 
 ### Modificación desde FileZilla
 Modifico algo desde FileZilla en la carpeta FTP:
-![Modificación desde FileZilla](/img/txt-filezilla.png)
+![Modificación desde FileZilla](/img/html-filezilla.png)
 ![Confirmación de Modificación](/img/modificacion.png)
 
 ### Verificación de Cambios desde la Máquina Virtual

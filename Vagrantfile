@@ -20,8 +20,10 @@ Vagrant.configure("2") do |config|
       git clone https://github.com/cloudacademy/static-website-example
       sudo chown -R www-data:www-data /var/www/amz/html
       sudo chmod -R 755 /var/www/amz
-      sudo cp /vagrant/config/amz /etc/nginx/sites-available/amz
-      sudo ln -s /etc/nginx/sites-available/amz /etc/nginx/sites-enabled/
+      
+      sudo cp /vagrant/config/amz /etc/nginx/sites-available/default
+      sudo ln -s /etc/nginx/sites-available/amz /etc/nginx/sites-enabled/default
+      sudo cp /vagrant/index.html /usr/share/nginx/html/index.html
       sudo systemctl restart nginx
       sudo systemctl status nginx
 
@@ -29,11 +31,11 @@ Vagrant.configure("2") do |config|
       sudo apt-get install vsftpd -y
       sudo useradd -m -s /bin/bash amz
       echo "amz:amz" | sudo chpasswd
-      sudo mkdir /home/amz/ftp
+      sudo mkdir /home/amz/ftp # Esta parte la he hecho porque lo pedía la práctica, pero luego tu cambiaste la idea principal de la práctica
 
       # Permisos para luego poder subir, modificar y eliminar archivos
-      sudo chown -R amz:amz /home/amz/ftp
-      sudo chmod -R 755 /home/amz/ftp
+      sudo chown -R amz:amz /var/www/amz/html/static-website-example
+      sudo chmod -R 755 /var/www/amz/html/static-website-example
 
       # Generarión de certificados
       sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/vsftpd.pem -out /etc/ssl/private/vsftpd.pem
@@ -44,7 +46,8 @@ Vagrant.configure("2") do |config|
       sudo dos2unix /etc/vsftpd.conf
       
       sudo systemctl restart vsftpd
-      c
+      sudo systemctl status vsftpd
+
     SHELL
   end
 end
